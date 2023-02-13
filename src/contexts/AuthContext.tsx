@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { api } from "../services/Api";
-import { parseCookies, setCookie } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 
 interface IsignInCrendential {
   email: string;
@@ -19,7 +19,11 @@ interface IAuthContextProps {
   isAuthenticated: boolean;
   user: User;
 }
-
+export const SignOut = () => {
+  destroyCookie(undefined, "nextauth.token");
+  destroyCookie(undefined, "nextauth.refreshToken");
+  Router.push("/");
+};
 export const AuthContext = React.createContext({} as IAuthContextProps);
 
 export function AuthContextProvider({ children }) {
@@ -41,6 +45,7 @@ export function AuthContextProvider({ children }) {
         });
       } catch (err) {
         console.log(err);
+        SignOut();
       }
     }
 

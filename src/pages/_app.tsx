@@ -5,7 +5,7 @@ import "../global.css";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthContextProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </AuthContextProvider>
   );
 }
