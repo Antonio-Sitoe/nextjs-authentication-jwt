@@ -1,6 +1,6 @@
 import Router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { api } from "../services/Api";
+import { api } from "../services/apiClient";
 import { destroyCookie, parseCookies, setCookie } from "nookies";
 
 interface IsignInCrendential {
