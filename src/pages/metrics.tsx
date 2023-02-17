@@ -1,27 +1,23 @@
-import React, { useContext } from "react";
-import { withSSRAuth } from "../utils/withSSRAuth";
-import { AuthContext } from "../contexts/AuthContext";
-import { setupAPIClient } from "../services/Api";
+import React from "react";
 import Can from "../components/Can";
+import { withSSRAuth } from "../utils/withSSRAuth";
+import { setupAPIClient } from "../services/Api";
 
-function Dashboard() {
-  const { user } = useContext(AuthContext);
-
+function Metrics() {
   return (
     <div>
-      <h1>{user?.email}</h1>
-      <Can>
-        <h1>Metricas</h1>
-      </Can>
+      <h1>Metricas</h1>
     </div>
   );
 }
 
-export default Dashboard;
+export default Metrics;
 
 export const getServerSideProps = withSSRAuth(async (ctx) => {
   const apiclient = setupAPIClient(ctx);
   const { data } = await apiclient.get("/me");
+
+  const user = 
 
   return {
     props: {
